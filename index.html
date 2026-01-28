@@ -181,6 +181,56 @@
       box-shadow: inset 0 0 0 1px #e5e7eb;
     }
 
+    .contact {
+      margin-top: 24px;
+      background: #fff;
+      border-radius: 20px;
+      padding: 18px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+      display: grid;
+      gap: 12px;
+    }
+
+    .contact label {
+      background: transparent;
+      padding: 0;
+      border-radius: 0;
+      display: grid;
+      gap: 6px;
+      font-weight: 700;
+    }
+
+    .contact input,
+    .contact textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 2px solid #e5e7eb;
+      font-size: 14px;
+      font-weight: 600;
+      font-family: inherit;
+      outline: none;
+      transition: border-color .15s ease, box-shadow .15s ease;
+    }
+
+    .contact input:focus,
+    .contact textarea:focus {
+      border-color: #ff6b6b;
+      box-shadow: 0 0 0 3px rgba(255,107,107,0.2);
+    }
+
+    .contact .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .contact small {
+      color: #6b7280;
+      font-size: 12px;
+    }
     .mono {
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
       white-space: pre-wrap;
@@ -226,6 +276,29 @@
         </div>
       </div>
 
+      <form class="contact" action="https://formspree.io/f/mgokgvwo" method="POST">
+        <div style="font-weight:900;">제휴 문의</div>
+        <label>
+          이름
+          <input type="text" name="name" placeholder="홍길동" required />
+        </label>
+        <label>
+          이메일
+          <input type="email" name="email" placeholder="you@example.com" required />
+        </label>
+        <label>
+          회사/브랜드
+          <input type="text" name="company" placeholder="회사명 또는 브랜드명" />
+        </label>
+        <label>
+          문의 내용
+          <textarea name="message" rows="4" placeholder="간단한 제휴 제안 내용을 적어주세요." required></textarea>
+        </label>
+        <div class="row">
+          <button type="submit">문의 보내기</button>
+          <small>Formspree 엔드포인트를 교체해야 전송됩니다.</small>
+        </div>
+      </form>
       <footer>
         ⚠️ 통계 기반 랜덤 추첨이며 당첨을 보장하지 않습니다.
       </footer>
