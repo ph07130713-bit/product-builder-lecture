@@ -1,14 +1,331 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello World</title>
-  <link href='/style.css' rel='stylesheet'>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>🎉 우디니의 로또 번호</title>
+
+  <style>
+    :root {
+      --bg1: #ffecd2;
+      --bg2: #fcb69f;
+      --card: rgba(255,255,255,0.85);
+      --text: #1f2937;
+      --primary: #ff6b6b;
+      --secondary: #4dabf7;
+      --accent: #51cf66;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--bg1), var(--bg2));
+      font-family: "Noto Sans KR", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: 1000px;
+      padding: 28px 16px 60px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 24px;
+      padding: 26px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 32px;
+      font-weight: 900;
+      text-align: center;
+      background: linear-gradient(90deg, #ff6b6b, #845ef7, #22b8cf);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      text-align: center;
+      margin-top: 8px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .controls {
+      margin-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    button {
+      border: none;
+      border-radius: 999px;
+      padding: 14px 26px;
+      font-size: 16px;
+      font-weight: 800;
+      color: white;
+      background: linear-gradient(135deg, #ff6b6b, #f06595);
+      cursor: pointer;
+      box-shadow: 0 10px 20px rgba(255,107,107,0.4);
+      transition: transform .1s ease, box-shadow .1s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 26px rgba(255,107,107,0.55);
+    }
+
+    label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      background: #f1f5f9;
+      padding: 10px 16px;
+      border-radius: 999px;
+    }
+
+    input[type="number"] {
+      width: 70px;
+      padding: 6px 10px;
+      border-radius: 12px;
+      border: 2px solid #ddd;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .results {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    @media (min-width: 700px) {
+      .results {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .set {
+      background: white;
+      border-radius: 18px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+    }
+
+    .set-title {
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .balls {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .ball {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 15px;
+      color: white;
+      box-shadow: inset 0 -3px 0 rgba(0,0,0,0.15);
+    }
+
+    /* 로또 공 컬러 */
+    .ball.yellow { background: #fcc419; }
+    .ball.blue   { background: #339af0; }
+    .ball.red    { background: #ff6b6b; }
+    .ball.gray   { background: #868e96; }
+    .ball.green  { background: #51cf66; }
+
+    .info {
+      margin-top: 26px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    @media (min-width: 900px) {
+      .info {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .box {
+      background: #f8fafc;
+      border-radius: 18px;
+      padding: 16px;
+      font-size: 13px;
+      box-shadow: inset 0 0 0 1px #e5e7eb;
+    }
+
+    .mono {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      white-space: pre-wrap;
+      margin-top: 8px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 28px;
+      font-size: 12px;
+      color: #666;
+    }
+  </style>
 </head>
+
 <body>
-  <h1>Hello, world!</h1>
-  <button onclick="console.log('hello');">Press me</button>
-  <script defer type="text/javascript" src="/main.js"></script>
+  <div class="wrap">
+    <div class="card">
+      <h1>🎉 우디니의 로또 번호</h1>
+      <div class="subtitle">
+        2025년 당첨 데이터 기반 · 자주 나온 번호만 추첨
+      </div>
+
+      <div class="controls">
+        <button id="drawBtn">🎲 5세트 추첨하기</button>
+
+        <label>
+          TOP N 후보
+          <input id="topN" type="number" min="6" max="45" value="20">
+        </label>
+      </div>
+
+      <div id="results" class="results"></div>
+
+      <div class="info">
+        <div class="box">
+          <b>현재 후보 번호 (빈도 TOP N)</b>
+          <div id="poolView" class="mono"></div>
+        </div>
+        <div class="box">
+          <b>번호별 등장 빈도 TOP 10</b>
+          <div id="top10" class="mono"></div>
+        </div>
+      </div>
+
+      <footer>
+        ⚠️ 통계 기반 랜덤 추첨이며 당첨을 보장하지 않습니다.
+      </footer>
+    </div>
+  </div>
+
+<script>
+  const DRAWS = [
+    [5,6,11,27,43,44],[3,16,18,24,40,44],[6,12,18,37,40,41],
+    [8,10,14,20,33,41],[1,13,21,25,28,31],[4,15,17,23,27,36],
+    [14,16,23,25,31,37],[6,17,22,28,29,32],[2,8,13,16,23,28],
+    [5,13,26,29,37,40],[3,4,12,19,22,27],[9,19,29,35,37,38],
+    [7,9,19,23,26,45],[1,4,11,12,20,41],[10,16,23,36,39,40],
+    [6,9,16,19,24,28],[3,13,15,24,33,37],[3,15,27,33,34,36],
+    [8,12,15,29,40,45],[1,5,7,26,28,43],[26,30,33,38,39,41],
+    [16,24,25,30,31,32],[1,2,4,16,20,32],[7,9,24,27,35,36],
+    [5,12,21,33,37,40],[3,6,18,29,35,39],[8,16,28,30,31,44]
+  ];
+
+  function buildFrequency() {
+    const f = Array(46).fill(0);
+    DRAWS.flat().forEach(n => f[n]++);
+    return f;
+  }
+
+  function buildTopPool(freq, topN) {
+    return [...Array(45)].map((_,i)=>i+1)
+      .map(n=>({n,f:freq[n]}))
+      .sort((a,b)=>b.f-a.f||a.n-b.n)
+      .slice(0,topN)
+      .map(x=>x.n);
+  }
+
+  function weightedPick(pool, freq) {
+    let sum = pool.reduce((s,n)=>s+freq[n],0);
+    let r = Math.random()*sum;
+    for (let n of pool) {
+      r -= freq[n];
+      if (r<=0) return n;
+    }
+    return pool[pool.length-1];
+  }
+
+  function makeSet(pool, freq) {
+    const p = [...pool];
+    const set = [];
+    while (set.length<6) {
+      const n = weightedPick(p,freq);
+      set.push(n);
+      p.splice(p.indexOf(n),1);
+    }
+    return set.sort((a,b)=>a-b);
+  }
+
+  function ballColor(n){
+    if(n<=10) return "yellow";
+    if(n<=20) return "blue";
+    if(n<=30) return "red";
+    if(n<=40) return "gray";
+    return "green";
+  }
+
+  function render(){
+    const freq = buildFrequency();
+    const topN = Math.max(6,Math.min(45,+topNInput.value||20));
+    const pool = buildTopPool(freq,topN);
+
+    poolView.textContent = pool.map(n=>`${n}(${freq[n]})`).join("  ");
+
+    const top10 = [...Array(45)].map((_,i)=>i+1)
+      .map(n=>({n,f:freq[n]}))
+      .sort((a,b)=>b.f-a.f)
+      .slice(0,10)
+      .map((x,i)=>`${i+1}. ${x.n} → ${x.f}회`)
+      .join("\n");
+    top10Div.textContent = top10;
+
+    results.innerHTML = "";
+    for(let i=0;i<5;i++){
+      const set = makeSet(pool,freq);
+      const div = document.createElement("div");
+      div.className="set";
+      div.innerHTML = `
+        <div class="set-title">세트 ${i+1}</div>
+        <div class="balls">
+          ${set.map(n=>`<div class="ball ${ballColor(n)}">${n}</div>`).join("")}
+        </div>`;
+      results.appendChild(div);
+    }
+  }
+
+  const drawBtn = document.getElementById("drawBtn");
+  const results = document.getElementById("results");
+  const poolView = document.getElementById("poolView");
+  const top10Div = document.getElementById("top10");
+  const topNInput = document.getElementById("topN");
+
+  drawBtn.onclick = render;
+  topNInput.onchange = render;
+  render();
+</script>
 </body>
 </html>
