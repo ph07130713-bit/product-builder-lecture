@@ -267,10 +267,6 @@
 
       <div class="info">
         <div class="box">
-          <b>현재 후보 번호 (빈도 TOP N)</b>
-          <div id="poolView" class="mono"></div>
-        </div>
-        <div class="box">
           <b>번호별 등장 빈도 TOP 10</b>
           <div id="top10" class="mono"></div>
         </div>
@@ -366,8 +362,6 @@
     const topN = Math.max(6,Math.min(45,+topNInput.value||20));
     const pool = buildTopPool(freq,topN);
 
-    poolView.textContent = pool.map(n=>`${n}(${freq[n]})`).join("  ");
-
     const top10 = [...Array(45)].map((_,i)=>i+1)
       .map(n=>({n,f:freq[n]}))
       .sort((a,b)=>b.f-a.f)
@@ -392,7 +386,6 @@
 
   const drawBtn = document.getElementById("drawBtn");
   const results = document.getElementById("results");
-  const poolView = document.getElementById("poolView");
   const top10Div = document.getElementById("top10");
   const topNInput = document.getElementById("topN");
 
