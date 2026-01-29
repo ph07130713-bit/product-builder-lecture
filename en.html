@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>🎉 우디니의 로또 번호</title>
+  <title>🎉 Wodini's Lotto Numbers</title>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4209462878852895"
      crossorigin="anonymous"></script>
 
@@ -265,19 +265,19 @@
 <body>
   <div class="wrap">
     <div class="card">
-      <h1>🎉 우디니의 로또 번호</h1>
+      <h1>🎉 Wodini's Lotto Numbers</h1>
       <div class="subtitle">
-        2025년 당첨 데이터 기반 · 자주 나온 번호만 추첨
+        Based on 2025 winning data · Picks from most frequent numbers
       </div>
       <div class="lang">
         <a href="index.html">한국어</a><span>·</span><a href="en.html">English</a>
       </div>
 
       <div class="controls">
-        <button id="drawBtn">🎲 5세트 추첨하기</button>
+        <button id="drawBtn">🎲 Draw 5 Sets</button>
 
         <label>
-          TOP N 후보
+          Top N Candidates
           <input id="topN" type="number" min="6" max="45" value="20">
         </label>
       </div>
@@ -286,36 +286,36 @@
 
       <div class="info">
         <div class="box">
-          <b>번호별 등장 빈도 TOP 10</b>
+          <b>Top 10 Numbers by Frequency</b>
           <div id="top10" class="mono"></div>
         </div>
       </div>
 
       <form class="contact" action="https://formspree.io/f/mgokgvwo" method="POST">
-        <div style="font-weight:900;">제휴 문의</div>
+        <div style="font-weight:900;">Partnership Inquiry</div>
         <label>
-          이름
-          <input type="text" name="name" placeholder="홍길동" required />
+          Name
+          <input type="text" name="name" placeholder="Jane Doe" required />
         </label>
         <label>
-          이메일
+          Email
           <input type="email" name="email" placeholder="you@example.com" required />
         </label>
         <label>
-          회사/브랜드
-          <input type="text" name="company" placeholder="회사명 또는 브랜드명" />
+          Company/Brand
+          <input type="text" name="company" placeholder="Company or brand name" />
         </label>
         <label>
-          문의 내용
-          <textarea name="message" rows="4" placeholder="간단한 제휴 제안 내용을 적어주세요." required></textarea>
+          Message
+          <textarea name="message" rows="4" placeholder="Briefly describe your proposal." required></textarea>
         </label>
         <div class="row">
-          <button type="submit">문의 보내기</button>
-          <small>Formspree 엔드포인트를 교체해야 전송됩니다.</small>
+          <button type="submit">Send Inquiry</button>
+          <small>Replace the Formspree endpoint to enable submissions.</small>
         </div>
       </form>
       <footer>
-        ⚠️ 통계 기반 랜덤 추첨이며 당첨을 보장하지 않습니다.
+        ⚠️ Randomized by statistics; no winnings are guaranteed.
       </footer>
     </div>
   </div>
@@ -385,7 +385,7 @@
       .map(n=>({n,f:freq[n]}))
       .sort((a,b)=>b.f-a.f)
       .slice(0,10)
-      .map((x,i)=>`${i+1}. ${x.n} → ${x.f}회`)
+      .map((x,i)=>`${i+1}. ${x.n} → ${x.f} times`)
       .join("\n");
     top10Div.textContent = top10;
 
@@ -395,7 +395,7 @@
       const div = document.createElement("div");
       div.className="set";
       div.innerHTML = `
-        <div class="set-title">세트 ${i+1}</div>
+        <div class="set-title">Set ${i+1}</div>
         <div class="balls">
           ${set.map(n=>`<div class="ball ${ballColor(n)}">${n}</div>`).join("")}
         </div>`;
