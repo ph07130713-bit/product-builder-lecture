@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="로또 번호 추천기. 샘플 데이터 기반 빈도 분석으로 상위 후보를 추려 5세트를 무작위 추첨합니다." />
   <title>🎉 우디니의 로또 번호</title>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4209462878852895"
      crossorigin="anonymous"></script>
@@ -59,6 +60,23 @@
       margin-top: 8px;
       font-size: 14px;
       color: #555;
+    }
+    nav {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+    nav a {
+      font-size: 12px;
+      font-weight: 800;
+      color: #334155;
+      text-decoration: none;
+      background: #fff;
+      padding: 6px 12px;
+      border-radius: 999px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.08);
     }
 
     .controls {
@@ -238,6 +256,40 @@
       white-space: pre-wrap;
       margin-top: 8px;
     }
+    .sections {
+      margin-top: 28px;
+      display: grid;
+      gap: 16px;
+    }
+    .section {
+      background: #fff;
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+    }
+    .section h2 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+    .section p, .section li {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #374151;
+    }
+    .section ul {
+      margin: 8px 0 0 18px;
+      padding: 0;
+    }
+    .pill {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #f1f5f9;
+      color: #334155;
+      margin-right: 6px;
+    }
 
     footer {
       text-align: center;
@@ -253,8 +305,17 @@
     <div class="card">
       <h1>🎉 우디니의 로또 번호</h1>
       <div class="subtitle">
-        2025년 당첨 데이터 기반 · 자주 나온 번호만 추첨
+        샘플 데이터 기반 · 자주 나온 번호 후보에서 추첨
       </div>
+      <nav>
+        <a href="#about">서비스 소개</a>
+        <a href="#method">추천 로직</a>
+        <a href="#usage">사용 방법</a>
+        <a href="#faq">FAQ</a>
+        <a href="#policy">운영 정책</a>
+        <a href="privacy.html">개인정보처리방침</a>
+        <a href="terms.html">이용약관</a>
+      </nav>
 
       <div class="controls">
         <button id="drawBtn">🎲 5세트 추첨하기</button>
@@ -272,6 +333,64 @@
           <b>번호별 등장 빈도 TOP 10</b>
           <div id="top10" class="mono"></div>
         </div>
+      </div>
+
+      <div class="sections">
+        <section id="about" class="section">
+          <h2>서비스 소개</h2>
+          <p>
+            우디니의 로또 번호 추천기는 <b>샘플 데이터의 빈도</b>를 분석해 상위 후보군을 만든 뒤,
+            그 안에서 5세트를 무작위로 추첨하는 가벼운 도구입니다.
+            확률과 재미를 위한 서비스이며 당첨을 보장하지 않습니다.
+          </p>
+          <p>
+            <span class="pill">가치 있는 콘텐츠</span>
+            로직 설명, 데이터 범위, 사용 목적을 명확히 공개하여 신뢰할 수 있는 경험을 제공합니다.
+          </p>
+        </section>
+
+        <section id="method" class="section">
+          <h2>추천 로직</h2>
+          <ul>
+            <li>샘플 데이터에서 각 번호의 등장 빈도를 계산합니다.</li>
+            <li>빈도 상위 <b>Top N 후보</b>를 추려 가중치 기반 무작위 추첨을 합니다.</li>
+            <li>세트 내 중복을 방지하고 오름차순으로 정렬합니다.</li>
+          </ul>
+          <p>
+            로직은 공개되어 있으며, 데이터와 규칙을 수정해 원하는 방식으로 커스터마이징할 수 있습니다.
+          </p>
+        </section>
+
+        <section id="usage" class="section">
+          <h2>사용 방법</h2>
+          <ul>
+            <li><b>Top N</b> 값을 조정해 후보군 범위를 설정합니다.</li>
+            <li>“5세트 추첨하기” 버튼을 눌러 새 번호를 생성합니다.</li>
+            <li>상단의 TOP 10 빈도표로 후보 흐름을 확인합니다.</li>
+          </ul>
+        </section>
+
+        <section id="faq" class="section">
+          <h2>FAQ</h2>
+          <ul>
+            <li><b>당첨 확률이 올라가나요?</b> 아니요. 통계 기반 무작위 추첨일 뿐이며 결과를 보장하지 않습니다.</li>
+            <li><b>데이터는 어디에서 오나요?</b> 현재는 샘플 데이터로 동작합니다. 실제 데이터로 교체하려면 스크립트의 DRAWS 배열을 업데이트하세요.</li>
+            <li><b>광고가 거슬리지 않나요?</b> 콘텐츠보다 광고가 더 돋보이지 않도록 배치를 설계합니다.</li>
+          </ul>
+        </section>
+
+        <section id="policy" class="section">
+          <h2>운영 정책</h2>
+          <ul>
+            <li>중복/자동 생성/의미 없는 페이지를 만들지 않습니다.</li>
+            <li>콘텐츠가 먼저이며, 광고는 부가 정보 수준을 유지합니다.</li>
+            <li>사용자가 쉽게 탐색할 수 있도록 구조를 단순하게 유지합니다.</li>
+            <li>개인정보처리방침과 이용약관을 공개합니다.</li>
+          </ul>
+          <p>
+            문의는 아래 폼을 통해 접수하며, 운영 기준은 정책 페이지에 상세히 공개합니다.
+          </p>
+        </section>
       </div>
 
       <form class="contact" action="https://formspree.io/f/mgokgvwo" method="POST">
@@ -299,6 +418,7 @@
       </form>
       <footer>
         ⚠️ 통계 기반 랜덤 추첨이며 당첨을 보장하지 않습니다.
+        · <a href="privacy.html">개인정보처리방침</a> · <a href="terms.html">이용약관</a>
       </footer>
     </div>
   </div>
